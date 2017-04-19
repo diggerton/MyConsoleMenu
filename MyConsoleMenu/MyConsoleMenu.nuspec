@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>MyConsoleMenu</id>
+    <version>1.0</version>
+    <title>My Console Menu</title>
+    <authors>JT</authors>
+    <owners>JT</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Used to help create a Console menu.</description>
+    <releaseNotes>Initial</releaseNotes>
+    <copyright>Copyright 2017</copyright>
+    <tags>console menu</tags>
+  </metadata>
+</package>
