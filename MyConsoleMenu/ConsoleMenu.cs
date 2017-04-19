@@ -15,7 +15,7 @@ namespace MyConsoleMenu
         private int indentFromLeft;
         private int indentFromCursor;
         private int cursorPosition;
-        private bool closeMenu;
+        private bool exitMenu;
         private Dictionary<int, MenuItem> menuItems = new Dictionary<int, MenuItem>();
         #endregion
 
@@ -25,7 +25,7 @@ namespace MyConsoleMenu
             this.indentFromLeft = 1;
             this.indentFromCursor = 1;
             this.cursorPosition = 0;
-            this.closeMenu = false;
+            this.exitMenu = false;
         }
 
         #region Public Properties
@@ -102,6 +102,11 @@ namespace MyConsoleMenu
                 cursorPosition = FindDictionaryKeyByMenuItemGuid(currentlySelectedGuid);
             }
         }
+        public virtual void ExitMenu()
+        {
+            this.exitMenu = true;
+        }
+
         private int FindDictionaryKeyByMenuItemGuid(Guid guid)
         {
             int key = 0;
@@ -115,7 +120,7 @@ namespace MyConsoleMenu
 
         public void ShowMenu()
         {
-            while (!closeMenu)
+            while (!exitMenu)
             {
                 Console.Clear();
                 DrawHeaderText();
@@ -182,7 +187,7 @@ namespace MyConsoleMenu
                         TriggerMenuItemAction(cursorPosition);
                         break;
                     case ConsoleKey.Escape:
-                        closeMenu = true;
+                        exitMenu = true;
                         break;
                     default:
                         // Unsupported key press
@@ -193,7 +198,7 @@ namespace MyConsoleMenu
             {
                 Console.Write("Press any key to exit menu...");
                 Console.ReadKey();
-                this.closeMenu = true;
+                this.exitMenu = true;
             }
         }
         public virtual int ResolveCursorPosition(int move)
@@ -224,7 +229,7 @@ namespace MyConsoleMenu
             {
                 menuItems[key].Action?.Invoke();
                 if (menuItems[key].ExitMenuAfterAction)
-                    closeMenu = true;
+                    exitMenu = true;
             }
             else
                 throw new ArgumentException($"Provided key: { key } was not found in current dictionary of MenuItems.  This should not happen.");
