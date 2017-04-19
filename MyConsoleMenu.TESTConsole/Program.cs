@@ -51,7 +51,7 @@ namespace MyConsoleMenu.TESTConsole
             //consoleMenu.AddMenuItem(MenuItem.Exit());
             //consoleMenu.ShowMenu();
 
-            ConsoleUtil.GetInput<bool>("hi");
+            ConsoleEx.GetInput<bool>("hi");
         }
     }
 }

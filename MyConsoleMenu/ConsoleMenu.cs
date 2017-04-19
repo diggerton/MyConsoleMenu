@@ -129,11 +129,11 @@ namespace MyConsoleMenu
 
         public virtual void DrawHeaderText()
         {
-            ConsoleUtil.WriteLineColor(HeaderText, HeaderColor);
+            ConsoleEx.WriteLineColor(HeaderText, HeaderColor);
         }
         public virtual void DrawSubheaderText()
         {
-            ConsoleUtil.WriteLineColor(SubheaderText, SubheaderColor);
+            ConsoleEx.WriteLineColor(SubheaderText, SubheaderColor);
         }
         public virtual void DrawMenuItems()
         {
@@ -145,9 +145,9 @@ namespace MyConsoleMenu
                     Console.Write(new string(' ', indentFromLeft));
                     if (cursorPosition == i)
                     {
-                        ConsoleUtil.WriteColor(cursorCharacter, HighlightColor, HighlightBackgroundColor);
+                        ConsoleEx.WriteColor(cursorCharacter, HighlightColor, HighlightBackgroundColor);
                         Console.Write(new string(' ', menuItems[i].IndentFromCursor >= 0 ? menuItems[i].IndentFromCursor : IndentFromCursor));
-                        ConsoleUtil.WriteLineColor(menuItems[i].Text,
+                        ConsoleEx.WriteLineColor(menuItems[i].Text,
                             menuItems[i].HighlightColor ?? HighlightColor,
                             menuItems[i].HighlightBackgroundColor ?? HighlightBackgroundColor);
                     }
@@ -155,7 +155,7 @@ namespace MyConsoleMenu
                     {
                         Console.Write(new string(' ', cursorCharacter.Length));
                         Console.Write(new string(' ', menuItems[i].IndentFromCursor >= 0 ? menuItems[i].IndentFromCursor : IndentFromCursor));
-                        ConsoleUtil.WriteLineColor(menuItems[i].Text,
+                        ConsoleEx.WriteLineColor(menuItems[i].Text,
                             menuItems[i].ForegroundColor ?? ForegroundColor,
                             menuItems[i].BackgroundColor ?? BackgroundColor);
                     }

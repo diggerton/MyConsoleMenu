@@ -41,17 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsoleMenu.cs" />
+    <Compile Include="ConsoleEx.cs" />
     <Compile Include="Models\MenuItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ConsoleUtilities\ConsoleUtilities.csproj">
-      <Project>{7ba9c49c-f6be-4d15-9db7-080464781495}</Project>
-      <Name>ConsoleUtilities</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

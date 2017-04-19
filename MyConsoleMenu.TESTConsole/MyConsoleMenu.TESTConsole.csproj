@@ -49,10 +49,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleUtilities\ConsoleUtilities.csproj">
-      <Project>{7ba9c49c-f6be-4d15-9db7-080464781495}</Project>
-      <Name>ConsoleUtilities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MyConsoleMenu\MyConsoleMenu.csproj">
       <Project>{d37869ee-0a31-4d43-b30b-48d5fbf975ba}</Project>
       <Name>MyConsoleMenu</Name>

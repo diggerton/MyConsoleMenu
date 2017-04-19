@@ -2,7 +2,7 @@
 
 namespace MyConsoleMenu
 {
-    public static class ConsoleUtil
+    public static class ConsoleEx
     {
         public static void WriteColor(string _p, ConsoleColor _foreColor = ConsoleColor.Gray, ConsoleColor _backColor = ConsoleColor.Black)
         {
