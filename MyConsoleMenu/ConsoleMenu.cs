@@ -82,22 +82,25 @@ namespace MyConsoleMenu
         }
         public virtual void RefreshMenuItems()
         {
-            var dict = new Dictionary<int, MenuItem>();
-            int iterator = 0;
-            Guid currentlySelectedGuid = Guid.Empty;
-            if(menuItems.TryGetValue(cursorPosition, out MenuItem currentlySelectedMenuItem))
-                currentlySelectedGuid = currentlySelectedMenuItem.Guid;
-
-            foreach (var kvp in menuItems)
+            if (menuItems.Count > 0)
             {
-                if (!kvp.Value.DeleteSelf)
+                var dict = new Dictionary<int, MenuItem>();
+                int iterator = 0;
+                Guid currentlySelectedGuid = Guid.Empty;
+                if (menuItems.TryGetValue(cursorPosition, out MenuItem currentlySelectedMenuItem))
+                    currentlySelectedGuid = currentlySelectedMenuItem.Guid;
+
+                foreach (var kvp in menuItems)
                 {
-                    dict.Add(iterator, kvp.Value);
-                    iterator++;
+                    if (!kvp.Value.DeleteSelf)
+                    {
+                        dict.Add(iterator, kvp.Value);
+                        iterator++;
+                    }
                 }
+                menuItems = dict;
+                cursorPosition = FindDictionaryKeyByMenuItemGuid(currentlySelectedGuid);
             }
-            menuItems = dict;
-            cursorPosition = FindDictionaryKeyByMenuItemGuid(currentlySelectedGuid);
         }
         private int FindDictionaryKeyByMenuItemGuid(Guid guid)
         {
@@ -133,48 +136,64 @@ namespace MyConsoleMenu
         public virtual void DrawMenuItems()
         {
             RefreshMenuItems();
-            for (int i = 0; i < menuItems.Count; i++)
+            if (menuItems.Count > 0)
             {
-                Console.Write(new string(' ', indentFromLeft));
-                if(cursorPosition==i)
+                for (int i = 0; i < menuItems.Count; i++)
                 {
-                    ConsoleUtil.WriteColor(cursorCharacter, HighlightColor, HighlightBackgroundColor);
-                    Console.Write(new string(' ', menuItems[i].IndentFromCursor >= 0 ? menuItems[i].IndentFromCursor : IndentFromCursor));
-                    ConsoleUtil.WriteLineColor(menuItems[i].Text,
-                        menuItems[i].HighlightColor ?? HighlightColor,
-                        menuItems[i].HighlightBackgroundColor ?? HighlightBackgroundColor);
+                    Console.Write(new string(' ', indentFromLeft));
+                    if (cursorPosition == i)
+                    {
+                        ConsoleUtil.WriteColor(cursorCharacter, HighlightColor, HighlightBackgroundColor);
+                        Console.Write(new string(' ', menuItems[i].IndentFromCursor >= 0 ? menuItems[i].IndentFromCursor : IndentFromCursor));
+                        ConsoleUtil.WriteLineColor(menuItems[i].Text,
+                            menuItems[i].HighlightColor ?? HighlightColor,
+                            menuItems[i].HighlightBackgroundColor ?? HighlightBackgroundColor);
+                    }
+                    else
+                    {
+                        Console.Write(new string(' ', cursorCharacter.Length));
+                        Console.Write(new string(' ', menuItems[i].IndentFromCursor >= 0 ? menuItems[i].IndentFromCursor : IndentFromCursor));
+                        ConsoleUtil.WriteLineColor(menuItems[i].Text,
+                            menuItems[i].ForegroundColor ?? ForegroundColor,
+                            menuItems[i].BackgroundColor ?? BackgroundColor);
+                    }
                 }
-                else
-                {
-                    Console.Write(new string(' ', cursorCharacter.Length));
-                    Console.Write(new string(' ', menuItems[i].IndentFromCursor >= 0 ? menuItems[i].IndentFromCursor : IndentFromCursor));
-                    ConsoleUtil.WriteLineColor(menuItems[i].Text,
-                        menuItems[i].ForegroundColor ?? ForegroundColor,
-                        menuItems[i].BackgroundColor ?? BackgroundColor);
-                }
+            }
+            else
+            {
+                Console.WriteLine("No items.");
             }
         }
         public virtual void AwaitUserInput()
         {
-            Console.CursorVisible = false;
-            var userKeyInput = Console.ReadKey().Key;
-            switch (userKeyInput)
+            if (menuItems.Count > 0)
             {
-                case ConsoleKey.UpArrow:
-                    cursorPosition = ResolveCursorPosition(-1);
-                    break;
-                case ConsoleKey.DownArrow:
-                    cursorPosition = ResolveCursorPosition(1);
-                    break;
-                case ConsoleKey.Enter:
-                    TriggerMenuItemAction(cursorPosition);
-                    break;
-                case ConsoleKey.Escape:
-                    closeMenu = true;
-                    break;
-                default:
-                    // Unsupported key press
-                    break;
+                Console.CursorVisible = false;
+                var userKeyInput = Console.ReadKey().Key;
+                switch (userKeyInput)
+                {
+                    case ConsoleKey.UpArrow:
+                        cursorPosition = ResolveCursorPosition(-1);
+                        break;
+                    case ConsoleKey.DownArrow:
+                        cursorPosition = ResolveCursorPosition(1);
+                        break;
+                    case ConsoleKey.Enter:
+                        TriggerMenuItemAction(cursorPosition);
+                        break;
+                    case ConsoleKey.Escape:
+                        closeMenu = true;
+                        break;
+                    default:
+                        // Unsupported key press
+                        break;
+                }
+            }
+            else
+            {
+                Console.Write("Press any key to exit menu...");
+                Console.ReadKey();
+                this.closeMenu = true;
             }
         }
         public virtual int ResolveCursorPosition(int move)

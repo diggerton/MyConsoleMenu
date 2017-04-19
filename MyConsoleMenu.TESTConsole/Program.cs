@@ -1,5 +1,6 @@
 ﻿using MyConsoleMenu.Models;
 using System;
+using System.Collections.Generic;
 
 namespace MyConsoleMenu.TESTConsole
 {
@@ -7,52 +8,48 @@ namespace MyConsoleMenu.TESTConsole
     {
         static void Main(string[] args)
         {
-            var consoleMenu = new ConsoleMenu()
-            {
-                CycleMenu = true
-            };
-            consoleMenu.AddMenuItem(new MenuItem("With action")
-            {
-                Action = () =>
-                {
-                    Console.WriteLine("ACTION TRIGGERED");
-                    Console.ReadKey();
-                }
-            });
-            consoleMenu.AddMenuItem(new MenuItem("closes menu after")
-            {
-                ExitMenuAfterAction = true,
-                Action = () =>
-                {
-                    Console.WriteLine("Closing menu");
-                    Console.ReadKey();
-                }
-            });
-            consoleMenu.AddMenuItem(new MenuItem("Regular Item"));
-            consoleMenu.AddMenuItem(new MenuItem("Override colors")
-            {
-                ForegroundColor = ConsoleColor.Black,
-                BackgroundColor = ConsoleColor.White
-            });
-            consoleMenu.AddMenuItem(new MenuItem("Override highlight colors")
-            {
-                HighlightColor = ConsoleColor.Magenta,
-                HighlightBackgroundColor = ConsoleColor.Gray
-            });
-            consoleMenu.AddMenuItem(MenuItem.Spacer("spacer"));
-            consoleMenu.AddMenuItem(MenuItem.Spacer("spacer with indent", 5));
-            consoleMenu.AddMenuItem(new MenuItem("Override indent")
-            {
-                IndentFromCursor = 5
-            });
-            MenuItem mi = new MenuItem("");
-            var str = new Func<string>(() => { return "my string from func"; });
-            mi.Text = str();
-            consoleMenu.AddMenuItem(mi);
+            //var consoleMenu = new ConsoleMenu()
+            //{
+            //    CycleMenu = true
+            //};
+            //consoleMenu.AddMenuItem(new MenuItem("With action")
+            //{
+            //    Action = () =>
+            //    {
+            //        Console.WriteLine("ACTION TRIGGERED");
+            //        Console.ReadKey();
+            //    }
+            //});
+            //consoleMenu.AddMenuItem(new MenuItem("closes menu after")
+            //{
+            //    ExitMenuAfterAction = true,
+            //    Action = () =>
+            //    {
+            //        Console.WriteLine("Closing menu");
+            //        Console.ReadKey();
+            //    }
+            //});
+            //consoleMenu.AddMenuItem(new MenuItem("Regular Item"));
+            //consoleMenu.AddMenuItem(new MenuItem("Override colors")
+            //{
+            //    ForegroundColor = ConsoleColor.Black,
+            //    BackgroundColor = ConsoleColor.White
+            //});
+            //consoleMenu.AddMenuItem(new MenuItem("Override highlight colors")
+            //{
+            //    HighlightColor = ConsoleColor.Magenta,
+            //    HighlightBackgroundColor = ConsoleColor.Gray
+            //});
+            //consoleMenu.AddMenuItem(MenuItem.Spacer("spacer"));
+            //consoleMenu.AddMenuItem(MenuItem.Spacer("spacer with indent", 5));
+            //consoleMenu.AddMenuItem(new MenuItem("Override indent")
+            //{
+            //    IndentFromCursor = 5
+            //});
 
-            consoleMenu.AddMenuItem(MenuItem.Spacer());
-            consoleMenu.AddMenuItem(MenuItem.Exit());
-            consoleMenu.ShowMenu();
+            //consoleMenu.AddMenuItem(MenuItem.Spacer());
+            //consoleMenu.AddMenuItem(MenuItem.Exit());
+            //consoleMenu.ShowMenu();
         }
     }
 }

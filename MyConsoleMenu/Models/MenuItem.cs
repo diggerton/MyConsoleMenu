@@ -36,13 +36,13 @@ namespace MyConsoleMenu.Models
             };
         }
 
-        public string Text { get; set; }
-        public bool ValidItem { get; set; }
-        public bool DeleteSelf { get; set; }
-        public bool ExitMenuAfterAction { get; set; }
-        public int IndentFromCursor { get; set; }
-        public Guid Guid { get; private set; }
-        public Action Action { get; set; }
+        public virtual string Text { get; set; }
+        public virtual bool ValidItem { get; set; }
+        public virtual bool DeleteSelf { get; set; }
+        public virtual bool ExitMenuAfterAction { get; set; }
+        public virtual int IndentFromCursor { get; set; }
+        public virtual Guid Guid { get; private set; }
+        public virtual Action Action { get; set; }
 
         public ConsoleColor? ForegroundColor { get; set; }
         public ConsoleColor? BackgroundColor { get; set; }
