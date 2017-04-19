@@ -50,6 +50,8 @@ namespace MyConsoleMenu.TESTConsole
             //consoleMenu.AddMenuItem(MenuItem.Spacer());
             //consoleMenu.AddMenuItem(MenuItem.Exit());
             //consoleMenu.ShowMenu();
+
+            ConsoleUtil.GetInput<bool>("hi");
         }
     }
 }
