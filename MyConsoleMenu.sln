@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConsoleMenu", "MyConsoleM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyConsoleMenu.TESTConsole", "MyConsoleMenu.TESTConsole\MyConsoleMenu.TESTConsole.csproj", "{20BC6870-BF37-419F-AFB0-85806CEE051D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleUtilities", "ConsoleUtilities\ConsoleUtilities.csproj", "{7BA9C49C-F6BE-4D15-9DB7-080464781495}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{20BC6870-BF37-419F-AFB0-85806CEE051D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20BC6870-BF37-419F-AFB0-85806CEE051D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20BC6870-BF37-419F-AFB0-85806CEE051D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BA9C49C-F6BE-4D15-9DB7-080464781495}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BA9C49C-F6BE-4D15-9DB7-080464781495}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BA9C49C-F6BE-4D15-9DB7-080464781495}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BA9C49C-F6BE-4D15-9DB7-080464781495}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
