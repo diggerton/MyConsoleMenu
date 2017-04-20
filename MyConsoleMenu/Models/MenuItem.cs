@@ -16,6 +16,8 @@ namespace MyConsoleMenu.Models
             ValidItem = validItem;
             DeleteSelf = deleteSelf;
             ExitMenuAfterAction = exitMenuAfterAction;
+            IndentFromCursor = -1;
+            Guid = Guid.NewGuid();
         }
         public static MenuItem Spacer(string text = "", int indent = -1)
         {
@@ -38,8 +40,8 @@ namespace MyConsoleMenu.Models
         public bool ValidItem { get; set; }
         public bool DeleteSelf { get; set; }
         public bool ExitMenuAfterAction { get; set; }
-        public int IndentFromCursor { get; set; } = -1;
-        public Guid Guid { get; private set; } = new Guid();
+        public int IndentFromCursor { get; set; }
+        public Guid Guid { get; private set; }
         public Action Action { get; set; }
 
         public ConsoleColor? ForegroundColor { get; set; }
