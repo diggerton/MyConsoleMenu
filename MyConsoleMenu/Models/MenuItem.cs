@@ -8,16 +8,14 @@ namespace MyConsoleMenu.Models
 {
     public class MenuItem
     {
-        private const string exitText = "Exit";
-        private MenuItem() { }
+        const string exitText = "Exit";
+        MenuItem() { }
         public MenuItem(string text, bool validItem = true, bool deleteSelf = false, bool exitMenuAfterAction = false)
         {
-            this.Text = text;
-            this.ValidItem = validItem;
-            this.DeleteSelf = deleteSelf;
-            this.ExitMenuAfterAction = exitMenuAfterAction;
-            this.Guid = Guid.NewGuid();
-            this.IndentFromCursor = -1;
+            Text = text;
+            ValidItem = validItem;
+            DeleteSelf = deleteSelf;
+            ExitMenuAfterAction = exitMenuAfterAction;
         }
         public static MenuItem Spacer(string text = "", int indent = -1)
         {
@@ -36,13 +34,13 @@ namespace MyConsoleMenu.Models
             };
         }
 
-        public virtual string Text { get; set; }
-        public virtual bool ValidItem { get; set; }
-        public virtual bool DeleteSelf { get; set; }
-        public virtual bool ExitMenuAfterAction { get; set; }
-        public virtual int IndentFromCursor { get; set; }
-        public virtual Guid Guid { get; private set; }
-        public virtual Action Action { get; set; }
+        public string Text { get; set; }
+        public bool ValidItem { get; set; }
+        public bool DeleteSelf { get; set; }
+        public bool ExitMenuAfterAction { get; set; }
+        public int IndentFromCursor { get; set; } = -1;
+        public Guid Guid { get; private set; } = new Guid();
+        public Action Action { get; set; }
 
         public ConsoleColor? ForegroundColor { get; set; }
         public ConsoleColor? BackgroundColor { get; set; }

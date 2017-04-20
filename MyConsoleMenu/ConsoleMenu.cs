@@ -8,27 +8,27 @@ namespace MyConsoleMenu
     public class ConsoleMenu
     {
         #region Private fields.
-        private string cursorCharacter;
-        private int indentFromLeft;
-        private int indentFromCursor;
-        private int cursorPosition;
-        private bool exitMenu;
-        private Dictionary<int, MenuItem> menuItems = new Dictionary<int, MenuItem>();
+        string cursorCharacter;
+        int indentFromLeft;
+        int indentFromCursor;
+        int cursorPosition;
+        bool exitMenu;
+        Dictionary<int, MenuItem> menuItems = new Dictionary<int, MenuItem>();
         #endregion
 
         public ConsoleMenu(string cursorCharacter = "->")
         {
             this.cursorCharacter = cursorCharacter;
-            this.indentFromLeft = 1;
-            this.indentFromCursor = 1;
-            this.cursorPosition = 0;
-            this.exitMenu = false;
+            indentFromLeft = 1;
+            indentFromCursor = 1;
+            cursorPosition = 0;
+            exitMenu = false;
         }
 
         #region Public Properties
         public ConsoleColor HeaderColor { get; set; } = ConsoleColor.White;
         public ConsoleColor SubheaderColor { get; set; } = ConsoleColor.Gray;
-        public ConsoleColor ForegroundColor { get; set; } = ConsoleColor.Green;
+        public ConsoleColor ForegroundColor { get; set; } = ConsoleColor.White;
         public ConsoleColor BackgroundColor { get; set; } = ConsoleColor.Black;
         public ConsoleColor HighlightColor { get; set; } = ConsoleColor.Yellow;
         public ConsoleColor HighlightBackgroundColor { get; set; } = ConsoleColor.Black;
@@ -66,7 +66,7 @@ namespace MyConsoleMenu
         public virtual void AddMenuItem(MenuItem menuItem)
         {
             int _id = 0;
-            if (menuItems.Count() == 0 || menuItems.Max(m => m.Key) < 0)
+            if (!menuItems.Any()|| menuItems.Max(m => m.Key) < 0)
                 _id = 0;
             else
                 _id = menuItems.Max(m => m.Key) + 1;
@@ -104,7 +104,7 @@ namespace MyConsoleMenu
             this.exitMenu = true;
         }
 
-        private int FindDictionaryKeyByMenuItemGuid(Guid guid)
+        int FindDictionaryKeyByMenuItemGuid(Guid guid)
         {
             int key = 0;
             foreach (var kvp in menuItems)
@@ -225,8 +225,9 @@ namespace MyConsoleMenu
             if (menuItems.ContainsKey(key))
             {
                 menuItems[key].Action?.Invoke();
-                if (menuItems[key].ExitMenuAfterAction)
-                    exitMenu = true;
+                exitMenu |= menuItems[key].ExitMenuAfterAction;
+                //if (menuitems[key].exitmenuafteraction)
+                //    exitmenu = true;
             }
             else
                 throw new ArgumentException($"Provided key: { key } was not found in current dictionary of MenuItems.  This should not happen.");
