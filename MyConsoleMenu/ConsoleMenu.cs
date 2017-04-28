@@ -117,6 +117,11 @@ namespace MyConsoleMenu
 
         public void ShowMenu()
         {
+            if(!menuItems.Any(m => m.Value.ValidItem))
+                throw new ArgumentNullException(nameof(menuItems), "No menu valid menuItems in collection.");
+
+            cursorPosition = menuItems.First(m => m.Value.ValidItem).Key;
+
             while (!exitMenu)
             {
                 Console.Clear();

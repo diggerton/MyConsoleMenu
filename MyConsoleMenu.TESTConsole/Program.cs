@@ -12,6 +12,7 @@ namespace MyConsoleMenu.TESTConsole
             {
                 CycleMenu = true
             };
+            consoleMenu.AddMenuItem(MenuItem.Spacer("test spacer"));
             consoleMenu.AddMenuItem(new MenuItem("With action")
             {
                 Action = () =>
